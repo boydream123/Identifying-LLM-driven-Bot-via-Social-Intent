@@ -65,9 +65,9 @@ These parameters control the core "Social Intent" logic.
 
 | Parameter (`config.py`) |    Symbol (Paper)    | Default | Detailed Description                                                                                                                                                                                                                                                                                                                 |
 | :------------------------ | :------------------: | :-----: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `separation_margin`     |     $\xi$ (xi)     | `0.5` | **Manifold Separation Margin**. Defined in **Eq. 9**. This controls the width of the "ambiguity void". `<br>`• For LLMs, we enforce $\alpha - \beta > \xi$.`<br>`• For Humans, we enforce $\alpha - \beta < -\xi$.`<br>`Larger values force a wider separation between clusters.                             |
-| `gamma_scale`           |  $\gamma$ (gamma)  | `1.0` | **Gating Scaling Factor**. Defined in **Eq. 12**. Controls the sensitivity of the attention mechanism.`<br>`• $e^{gated} = e^{raw} \cdot (1 + \gamma \mid\Delta\mid)$`<br>`• Higher $\gamma$ makes the model pay *significantly* more attention to posts with strong intent signals, ignoring neutral posts. |
-| `lambda_loss`           | $\lambda$ (lambda) | `0.1` | **Structural Loss Weight**. Defined in **Eq. 16**. Balances the trade-off between:`<br>`1. Accuracy ($\mathcal{L}_{BCE}$)`<br>`2. Intent Structure ($\mathcal{L}_{sep}$).`<br>`Too high $\lambda$ may hurt convergence; too low ignores the intent theory.                                                   |
+| `separation_margin`     |     $\xi$ (xi)     | `0.5` | **Manifold Separation Margin**. Defined in **Eq. 9**. This controls the width of the "ambiguity void". • For LLMs, we enforce $\alpha - \beta > \xi$. For Humans, we enforce $\alpha - \beta < -\xi$.Larger values force a wider separation between clusters.                             |
+| `gamma_scale`           |  $\gamma$ (gamma)  | `1.0` | **Gating Scaling Factor**. Defined in **Eq. 12**. Controls the sensitivity of the attention mechanism.$e^{gated} = e^{raw} \cdot (1 + \gamma \mid\Delta\mid)$. Higher $\gamma$ makes the model pay *significantly* more attention to posts with strong intent signals, ignoring neutral posts. |
+| `lambda_loss`           | $\lambda$ (lambda) | `0.1` | **Structural Loss Weight**. Defined in **Eq. 16**. Balances the trade-off between: 1. Accuracy ($\mathcal{L}_{BCE}$) 2. Intent Structure ($\mathcal{L}_{sep}$). Too high $\lambda$ may hurt convergence; too low ignores the intent theory.                                                   |
 
 ### 2. Model Architecture Parameters
 
@@ -227,21 +227,4 @@ e_gated = e_raw * gating_factor
 
 ---
 
-## 📜 Citation
 
-If you use this code or the SIFT framework in your research, please cite:
-
-```bibtex
-@article{SIFT2025,
-  title={SIFT: Identifying LLM-driven Bot via Social Intent},
-  author={Anonymous Authors},
-  journal={Under Review},
-  year={2025}
-}
-```
-
-## ⚠️ Disclaimer
-
-This implementation serves as a reference for the SIFT logic.
-
-* **Backbone:** The `MultimodalBackbone` class provided is a placeholder. For state-of-the-art results (as reported in Table 2 of the paper), you must integrate a real pre-trained Vision-Language Model like **Qwen2-VL** or **LLaVA**.
